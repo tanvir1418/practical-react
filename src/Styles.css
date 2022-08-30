@@ -24,8 +24,9 @@ body {
 .app button {
   font-size: 24px;
   display: block;
-  margin: 20px 0;
+  margin: 20px auto;
   padding: 5px 10px;
+  width: 100%;
 }
 
 .app h1 {
@@ -36,4 +37,6 @@ body {
 .app input {
   font-size: 24px;
   padding: 5px 10px;
+  display: block;
+  margin: 10px 0;
 }

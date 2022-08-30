@@ -2,26 +2,86 @@ import { useState } from "react";
 import "./Styles.css";
 
 const App = () => {
-  const [input, setInput] = useState("");
+  const [displayUser, setDisplayUser] = useState(false);
   const [user, setUser] = useState({
-    name: "John",
-    email: "john@gmail.com",
-    images: ["profile.png", "cover.png"],
+    name: "",
+    surname: "",
+    username: "",
+    email: "",
+    password: "",
+    country: "",
+    city: "",
+    address: "",
   });
 
-  const changeUser = () => {
-    setUser((prevState) => ({ ...prevState, name: input }));
+  const handleChange = (e) => {
+    setUser((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setDisplayUser(true);
+    console.log(user);
   };
 
   return (
     <div className="app">
-      <h1>User:</h1>
-      <input
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="enter a new name..."
-      />
-      <button onClick={changeUser}>Change name</button>
-      <h2>Username is {user.name}</h2>
+      <form onSubmit={submitHandler}>
+        {/* <form> */}
+        <input
+          type="text"
+          onChange={handleChange}
+          name="name"
+          placeholder="name"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="surname"
+          placeholder="surname"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="username"
+          placeholder="username"
+        />
+        <input
+          type="email"
+          onChange={handleChange}
+          name="email"
+          placeholder="email"
+        />
+        <input
+          type="password"
+          onChange={handleChange}
+          name="password"
+          placeholder="password"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="country"
+          placeholder="country"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="city"
+          placeholder="city"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="address"
+          placeholder="address"
+        />
+        <button>Submit</button>
+      </form>
+      <p>{displayUser && JSON.stringify(user)}</p>
     </div>
   );
 };
