@@ -2,23 +2,26 @@ import { useState } from "react";
 import "./Styles.css";
 
 const App = () => {
-  const [number, setNumber] = useState(0);
+  const [input, setInput] = useState("");
+  const [user, setUser] = useState({
+    name: "John",
+    email: "john@gmail.com",
+    images: ["profile.png", "cover.png"],
+  });
 
-  const increase = () => {
-    setNumber(number + 1);
-  };
-
-  const increaseAsync = () => {
-    setTimeout(() => {
-      setNumber((prevState) => prevState + 1);
-    }, 2000);
+  const changeUser = () => {
+    setUser((prevState) => ({ ...prevState, name: input }));
   };
 
   return (
     <div className="app">
-      <button onClick={increase}>Increase</button>
-      <button onClick={increaseAsync}>Increase Async</button>
-      <h1>{number}</h1>
+      <h1>User:</h1>
+      <input
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="enter a new name..."
+      />
+      <button onClick={changeUser}>Change name</button>
+      <h2>Username is {user.name}</h2>
     </div>
   );
 };
