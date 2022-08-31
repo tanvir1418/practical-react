@@ -1,87 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// OPTION: 02
+// import { useMemo } from "react";
 import "./Styles.css";
 
 const App = () => {
-  const [displayUser, setDisplayUser] = useState(false);
-  const [user, setUser] = useState({
+  // Primitive Values
+  const [name, setName] = useState(false);
+  // Reference Values
+  const [state, setState] = useState({
     name: "",
-    surname: "",
-    username: "",
-    email: "",
-    password: "",
-    country: "",
-    city: "",
-    address: "",
+    selected: false,
   });
 
-  const handleChange = (e) => {
-    setUser((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+  useEffect(() => {
+    console.log("The state has changed, useEffect runs!");
+  }, [state.name, state.selected]);
+
+  // OPTION: 02
+  // const user = useMemo(
+  //   () => ({
+  //     name: state.name,
+  //     selected: state.selected,
+  //   }),
+  //   [state.name, state.selected]
+  // );
+
+  // useEffect(() => {
+  //   console.log("The state has changed, useEffect runs!");
+  // }, [user]);
+
+  const handleAdd = () => {
+    setState((prevState) => ({ ...prevState, name }));
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setDisplayUser(true);
-    console.log(user);
+  const handleSelect = () => {
+    setState((prevState) => ({ ...prevState, selected: true }));
   };
 
   return (
     <div className="app">
-      <form onSubmit={submitHandler}>
-        {/* <form> */}
-        <input
-          type="text"
-          onChange={handleChange}
-          name="name"
-          placeholder="name"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          name="surname"
-          placeholder="surname"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          name="username"
-          placeholder="username"
-        />
-        <input
-          type="email"
-          onChange={handleChange}
-          name="email"
-          placeholder="email"
-        />
-        <input
-          type="password"
-          onChange={handleChange}
-          name="password"
-          placeholder="password"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          name="country"
-          placeholder="country"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          name="city"
-          placeholder="city"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          name="address"
-          placeholder="address"
-        />
-        <button>Submit</button>
-      </form>
-      <p>{displayUser && JSON.stringify(user)}</p>
+      <input
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+        name="name"
+        placeholder="name"
+      />
+
+      <button onClick={handleAdd}>Add Name</button>
+      <button onClick={handleSelect}>Select</button>
+      <p>{JSON.stringify(state)}</p>
     </div>
   );
 };
