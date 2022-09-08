@@ -1,54 +1,28 @@
 import { useEffect, useState } from "react";
-// OPTION: 02
-// import { useMemo } from "react";
 import "./Styles.css";
 
 const App = () => {
-  // Primitive Values
-  const [name, setName] = useState(false);
-  // Reference Values
-  const [state, setState] = useState({
-    name: "",
-    selected: false,
-  });
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
-    console.log("The state has changed, useEffect runs!");
-  }, [state.name, state.selected]);
+    console.log("Effect Enter");
 
-  // OPTION: 02
-  // const user = useMemo(
-  //   () => ({
-  //     name: state.name,
-  //     selected: state.selected,
-  //   }),
-  //   [state.name, state.selected]
-  // );
+    const interval = setInterval(() => {
+      setNumber((prevState) => prevState + 1);
+    }, [1000]);
 
-  // useEffect(() => {
-  //   console.log("The state has changed, useEffect runs!");
-  // }, [user]);
-
-  const handleAdd = () => {
-    setState((prevState) => ({ ...prevState, name }));
-  };
-
-  const handleSelect = () => {
-    setState((prevState) => ({ ...prevState, selected: true }));
-  };
+    //return a clean up function
+    return () => {
+      console.log("wait! before running the effect, I should clean here!");
+      //clear something from the previous effect
+      clearInterval(interval);
+      console.log("okay dore! you can run!");
+    };
+  }, []);
 
   return (
     <div className="app">
-      <input
-        type="text"
-        onChange={(e) => setName(e.target.value)}
-        name="name"
-        placeholder="name"
-      />
-
-      <button onClick={handleAdd}>Add Name</button>
-      <button onClick={handleSelect}>Select</button>
-      <p>{JSON.stringify(state)}</p>
+      <h1>{number}</h1>
     </div>
   );
 };
