@@ -1,10 +1,10 @@
-import Post from "./Post";
+import Form from "./Form";
 import "./Styles.css";
 
 const App = () => {
   return (
     <div className="app">
-      <Post />
+      <Form />
     </div>
   );
 };
