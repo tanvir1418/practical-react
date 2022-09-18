@@ -1,24 +1,57 @@
-import { useState } from "react";
-import ExpensiveComponent from "./ExpensiveComponent";
+import { useEffect, useMemo, useState } from "react";
 import "./Styles.css";
 
 const App = () => {
-  return (
-    <BackgroundProvider>
-      <ExpensiveComponent />
-    </BackgroundProvider>
-  );
-};
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(null);
+  const [country, setCountry] = useState("");
 
-const BackgroundProvider = ({ children }) => {
-  const [backgroundColor, setBackgroundColor] = useState("");
+  const userType = useMemo(
+    () => ({
+      underAge: age < 18 ? true : false,
+      citizen: country === "USA" ? true : false,
+    }),
+    [age, country]
+  );
+
+  useEffect(() => {
+    console.log("User type changed!");
+  }, [userType]);
+
+  // Without useMemo Solution
+  // const userType = {
+  //   underAge: age < 18 ? true : false,
+  //   citizen: country === "USA" ? true : false,
+  // };
+
+  // useEffect(() => {
+  //   console.log("User type changed!");
+  // }, [userType.age, userType.citizen]);
+
+  console.log("Component Rerendered!");
+
   return (
-    <div className="app" style={{ backgroundColor }}>
+    <div className="app">
       <input
-        onChange={(e) => setBackgroundColor(e.target.value)}
-        placeholder="enter color name or code"
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+        placeholder="enter name"
       />
-      {children}
+      <input
+        type="number"
+        onChange={(e) => setAge(e.target.value)}
+        placeholder="enter age"
+      />
+      <select onChange={(e) => setCountry(e.target.value)}>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+        <option value="Bangladesh">Bangladesh</option>
+        <option value="Pakistan">Pakistan</option>
+      </select>
+
+      <h1>User Details</h1>
+      <p>{`${name} (${age}) is from ${country}`}</p>
+      <p>{JSON.stringify(userType)}</p>
     </div>
   );
 };
