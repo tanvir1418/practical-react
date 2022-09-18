@@ -3,16 +3,22 @@ import ExpensiveComponent from "./ExpensiveComponent";
 import "./Styles.css";
 
 const App = () => {
-  const [text, setText] = useState("");
   return (
-    <div className="app">
-      <input
-        type="text"
-        onChange={(e) => setText(e.target.value)}
-        placeholder="enter a text"
-      />
-      <p>Text Value: {text}</p>
+    <BackgroundProvider>
       <ExpensiveComponent />
+    </BackgroundProvider>
+  );
+};
+
+const BackgroundProvider = ({ children }) => {
+  const [backgroundColor, setBackgroundColor] = useState("");
+  return (
+    <div className="app" style={{ backgroundColor }}>
+      <input
+        onChange={(e) => setBackgroundColor(e.target.value)}
+        placeholder="enter color name or code"
+      />
+      {children}
     </div>
   );
 };
