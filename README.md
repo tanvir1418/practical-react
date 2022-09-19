@@ -1,5 +1,13 @@
-# Practical React
+# Practical React: (Network-Status)
 
-## DevOps Developer
+## Vivek Joy: useNetwork (YouTube)
 
-Common header footer using react-bootstrap implemented following the playlist [React bootstrap tutorial](https://www.youtube.com/playlist?list=PLnMNkinxnppvBDAchNQlZeAm6ShMIwYGT).
+---
+
+useNetwork (Custom-Hook) : [useNetwork - custom react hook to detect network status](https://www.youtube.com/watch?v=0aPHx-eZ1s8)
+
+---
+
+📷 Screen Shots:
+
+![NetworkStatus](./useNetwork-example.png)

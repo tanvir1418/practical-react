@@ -1,7 +1,12 @@
 import "./Styles.css";
+import UseNetworkExample from "./components/UseNetworkExample";
 
 const App = () => {
-  return <div className="App"></div>;
+  return (
+    <>
+      <UseNetworkExample />
+    </>
+  );
 };
 
 export default App;
