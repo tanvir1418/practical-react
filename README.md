@@ -1,5 +1,7 @@
 # Practical React
 
-## DevOps Developer
+## Dark Mode (System Mode Switching)
 
-Common header footer using react-bootstrap implemented following the playlist [React bootstrap tutorial](https://www.youtube.com/playlist?list=PLnMNkinxnppvBDAchNQlZeAm6ShMIwYGT).
+[Dark Mode](https://www.youtube.com/watch?v=ou8P0cvOu_Q) : https://www.youtube.com/watch?v=ou8P0cvOu_Q
+
+NOTE: System switching on color mode (dark/light) is work on chrome, firefox and other browsers. Not working on brave browser.
