@@ -1,5 +1,5 @@
 # Practical React
 
-## DevOps Developer
+## Lama Dev
 
-Common header footer using react-bootstrap implemented following the playlist [React bootstrap tutorial](https://www.youtube.com/playlist?list=PLnMNkinxnppvBDAchNQlZeAm6ShMIwYGT).
+[BEST Ways to Handle and Validate React Forms without a Library](https://www.youtube.com/watch?v=tIdNeoHniEY).
